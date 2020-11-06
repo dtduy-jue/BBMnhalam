@@ -33,7 +33,7 @@
   </component>
   <component name="RunManager">
     <configuration name="BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="game.BombermanGame" />
+      <option name="MAIN_CLASS_NAME" value="BombermanGame" />
       <module name="BBMnhalam" />
       <extension name="coverage">
         <pattern>
@@ -63,10 +63,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="254" y="85" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604676081621">
+    <state x="254" y="85" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604678353837">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="254" y="85" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1604676081621" />
+    <state x="254" y="85" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1604678353837" />
     <state x="583" y="324" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1604675523978">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -75,25 +75,25 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="667" y="192" key="EnvironmentVariablesDialog/0.0.1600.860@0.0.1600.860" timestamp="1604675598908" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1604676088047">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1604678275806">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1604676088047" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1604676088047">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1604678275806" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1604678275805">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1604676088047" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1604676088046">
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1604678275805" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1604678275805">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1604676088046" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1604676088047">
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1604678275805" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1604678275806">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1604676088047" />
-    <state x="280" y="4" key="SettingsEditor" timestamp="1604676074537">
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1604678275806" />
+    <state x="280" y="4" key="SettingsEditor" timestamp="1604678290488">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="280" y="4" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1604676074537" />
+    <state x="280" y="4" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1604678290488" />
   </component>
 </project>

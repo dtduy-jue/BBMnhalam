@@ -1,5 +1,3 @@
-package game;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -7,11 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import game.entities.Bomber;
-import game.entities.Entity;
-import game.entities.Grass;
-import game.entities.Wall;
-import game.graphics.Sprite;
+import entities.Bomber;
+import entities.Entity;
+import entities.Grass;
+import entities.Wall;
+import graphics.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
