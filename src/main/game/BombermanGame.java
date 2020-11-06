@@ -14,6 +14,8 @@ import graphics.Sprite;
 import java.util.ArrayList;
 import java.util.List;
 
+// Các thay đổi code của ae//
+
 public class BombermanGame extends Application {
     
     public static final int WIDTH = 20;
