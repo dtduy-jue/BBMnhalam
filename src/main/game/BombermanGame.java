@@ -1,3 +1,4 @@
+import entities.enemy.Oneal;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -5,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import entities.enemy.Balloom;
 import entities.Bomber;
 import entities.Entity;
 import entities.Grass;
@@ -46,6 +48,7 @@ public class BombermanGame extends Application {
 
         // Them scene vao stage
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
         AnimationTimer timer = new AnimationTimer() {
@@ -59,8 +62,12 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
+        Entity bomberman1 = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        Entity balloom1 = new Balloom(1, 2, Sprite.balloom_right1.getFxImage());
+        Entity oneal1 = new Oneal(2, 3, Sprite.oneal_right1.getFxImage());
+        entities.add(bomberman1);
+        entities.add(balloom1);
+        entities.add(oneal1);
     }
 
     public void createMap() {
