@@ -55,7 +55,7 @@ public class BombermanGame extends Application {
             @Override
             public void handle(long l) {
                 render();
-                update();
+                update(scene);
             }
         };
         timer.start();
@@ -85,8 +85,10 @@ public class BombermanGame extends Application {
         }
     }
 
-    public void update() {
-        entities.forEach(Entity::update);
+    public void update(Scene scene) {
+        for (Entity entity : entities) {
+            entity.update(scene);
+        }
     }
 
     public void render() {

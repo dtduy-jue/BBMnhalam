@@ -1,6 +1,7 @@
 package entities.enemy;
 
 import entities.Entity;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import graphics.Sprite;
 
@@ -17,7 +18,7 @@ public class Balloom extends Entity {
     }
 
     @Override
-    public void update() {
+    public void update(Scene scene) {
         /*
         if (nhan vat di chuyen) {
             if (di chuyen trai) {
