@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 /**
  *  Vật thể có thể chuyển động.
  */
-public abstract class LivingEntity extends Entity {
+public abstract class AnimatedEntity extends Entity {
 
     protected int frame = 0;
 
@@ -16,7 +16,7 @@ public abstract class LivingEntity extends Entity {
 
     protected int speed = 2;
 
-    public LivingEntity( int xUnit, int yUnit, Image img) {
+    public AnimatedEntity(int xUnit, int yUnit, Image img) {
         this.x = xUnit * Sprite.SCALED_SIZE;
         this.y = yUnit * Sprite.SCALED_SIZE;
         this.img = img;

@@ -19,7 +19,6 @@ public abstract class Tile extends Entity {
 
     @Override
     public void update(Scene scene) {
-        //khong lam gi ca
     }
 
     public void render(GraphicsContext gc) {

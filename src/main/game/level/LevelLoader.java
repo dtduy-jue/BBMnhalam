@@ -90,7 +90,7 @@ public class LevelLoader {
                     // Thêm Bomber
                     case 'p':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
-                        //entities.add(new Bomber(x, y, Sprite.player_right.getFxImage()));
+                        entities.add(new Bomber(x, y, Sprite.player_right.getFxImage(), stillObject));
                         break;
 
                     // Thêm balloom

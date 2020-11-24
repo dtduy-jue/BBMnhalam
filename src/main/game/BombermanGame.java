@@ -69,9 +69,6 @@ public class BombermanGame extends Application {
 
         LevelLoader.loadLevel(0, entities, stillObjects);
 
-        Entity bomberman1 = new Bomber(1, 1, Sprite.player_right.getFxImage(), stillObjects);
-        entities.add(bomberman1);
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -88,52 +85,30 @@ public class BombermanGame extends Application {
                     stage.setTitle(String.format("Bomberman is running | FPS: %.3f", frameRate));
                     label.setText(String.format("%.3f", frameRate));
                 }
-                render();
                 update(scene);
+                render();
+
 
 
             }
         };
         timer.start();
-
-        //createMap();
-
-
-
-
-
-
-
-        /*
-        Entity bomberman1 = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        Entity balloom1 = new Balloom(1, 2, Sprite.balloom_right1.getFxImage());
-        Entity oneal1 = new Oneal(2, 3, Sprite.oneal_right1.getFxImage());
-        entities.add(bomberman1);
-        entities.add(balloom1);
-        entities.add(oneal1);
-
-         */
     }
-
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
-                }
-                stillObjects.add(object);
-            }
-        }
-    }
-
 
     public void update(Scene scene) {
         for (Entity entity : entities) {
-            entity.update(scene);
+            if (entity.isExist()) {
+                entity.update(scene);
+            } else {
+                entities.remove(entity);
+            }
+        }
+        for (Entity tile : stillObjects) {
+            if (tile.isExist()) {
+                tile.update(scene);
+            } else {
+                stillObjects.remove(tile);
+            }
         }
     }
 

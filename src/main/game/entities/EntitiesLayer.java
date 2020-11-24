@@ -1,7 +1,6 @@
 package entities;
 
 import entities.tile.Brick;
-import entities.tile.Wall;
 import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,8 +19,8 @@ public class EntitiesLayer extends Entity {
     protected List<Entity> layered_entity = new ArrayList<>();
 
     public EntitiesLayer (int x, int y, Entity ... entities) {
-        this.x = x;
-        this.y = y;
+        this.x = x * Sprite.SCALED_SIZE;
+        this.y = y * Sprite.SCALED_SIZE;
 
         layered_entity.addAll(Arrays.asList(entities));
     }
@@ -49,7 +48,7 @@ public class EntitiesLayer extends Entity {
 
     @Override
     public boolean collide(Entity e) {
-        return false;
+        return getTopEntity().collide(e);
     }
 
 

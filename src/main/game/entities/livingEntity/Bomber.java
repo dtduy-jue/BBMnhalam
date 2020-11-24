@@ -1,9 +1,7 @@
 package entities.livingEntity;
 
 import entities.Entity;
-import entities.LivingEntity;
-import entities.tile.Brick;
-import entities.tile.Wall;
+import entities.AnimatedEntity;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import graphics.Sprite;
@@ -14,7 +12,7 @@ import java.util.List;
 /**
  *  Người chơi.
  */
-public class Bomber extends LivingEntity {
+public class Bomber extends AnimatedEntity {
 
     private boolean left, right, up, down = false;
 
@@ -30,11 +28,6 @@ public class Bomber extends LivingEntity {
     @Override
     public void update(Scene scene) {
         move(scene);
-        if (a == 15) {
-            System.out.println((x / 48) + " " + x + "  " + (y / 48)+ " " + y);
-            a = 0;
-        }
-        ++a;
     }
 
     public void move(Scene scene) {
@@ -59,7 +52,7 @@ public class Bomber extends LivingEntity {
 
         if (up && !down)     goUp();
         else if (down && !up)   goDown();
-        else if (left && !right)   goLeft();
+        if (left && !right)   goLeft();
         else if (right && !left)  goRight();
     }
 
@@ -127,7 +120,7 @@ public class Bomber extends LivingEntity {
                 return res;
             }
         }
-        return new Brick(x, y, Sprite.brick_exploded1.getFxImage());//code sai, de tam
+        return null;
     }
 
 }

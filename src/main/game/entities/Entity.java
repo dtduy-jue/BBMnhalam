@@ -17,7 +17,7 @@ public abstract class Entity implements State {
     //Tọa độ Y tính từ góc trái trên trong Canvas
     protected int y;
 
-    protected boolean existence = false;
+    protected boolean existence = true;
 
     protected Image img;
 
