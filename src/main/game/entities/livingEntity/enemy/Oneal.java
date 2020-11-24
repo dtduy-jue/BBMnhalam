@@ -1,11 +1,11 @@
-package entities.enemy;
+package entities.livingEntity.enemy;
 
 import entities.Entity;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import graphics.Sprite;
 
-public class Oneal extends Entity {
+public class Oneal extends Enemy {
 
     private int frame = -1;
 
@@ -36,4 +36,8 @@ public class Oneal extends Entity {
         img = Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, ++frame, FRAME_CYCLE).getFxImage();
     }
 
+    @Override
+    public boolean collide(Entity e) {
+        return false;
+    }
 }
