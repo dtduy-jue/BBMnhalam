@@ -105,9 +105,6 @@ public class Bomber extends LivingEntity {
             return;
         }
         x -= speed;
-        if (frame >= FRAME_CYCLE) {
-            frame = 0;
-        }
         img = Sprite.movingSprite(Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, ++frame, FRAME_CYCLE).getFxImage();
     }
     public void goRight() {
@@ -122,9 +119,6 @@ public class Bomber extends LivingEntity {
             return;
         }
         x += speed;
-        if (frame >= FRAME_CYCLE) {
-            frame = 0;
-        }
         img = Sprite.movingSprite(Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, ++frame, FRAME_CYCLE).getFxImage();
     }
     public Entity searchEntity(int x, int y) {
