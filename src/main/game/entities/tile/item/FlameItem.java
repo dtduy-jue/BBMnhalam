@@ -16,6 +16,6 @@ public class FlameItem extends Item {
         if (e instanceof Bomber) {
             remove();
         }
-        return false;
+        return true;
     }
 }

@@ -23,10 +23,10 @@ public abstract class Entity implements State {
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
 
-    protected boolean canMoveUP = false;
-    protected boolean canMoveDOWN = false;
-    protected boolean canMoveLEFT = false;
-    protected boolean canMoveRIGHT = false;
+    protected boolean canMoveUP = true;
+    protected boolean canMoveDOWN = true;
+    protected boolean canMoveLEFT = true;
+    protected boolean canMoveRIGHT = true;
 
 
     public void render(GraphicsContext gc) {

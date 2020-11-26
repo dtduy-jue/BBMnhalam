@@ -16,13 +16,12 @@ public class Bomber extends AnimatedEntity {
 
     private boolean left, right, up, down = false;
 
-    int a = 0;
-
     private List<Entity> stillObjects = new ArrayList<>();
 
     public Bomber(int x, int y, Image img, List<Entity> e) {
         super( x, y, img);
         stillObjects = e;
+        speed = 2;
     }
 
     @Override
@@ -30,9 +29,9 @@ public class Bomber extends AnimatedEntity {
         move(scene);
     }
 
-    public void move(Scene scene) {
+    private void move(Scene scene) {
         scene.setOnKeyPressed(keyEvent -> {
-            switch (keyEvent.getCode()){
+            switch (keyEvent.getCode()) {
                 case LEFT:  left = true; break;
                 case RIGHT: right = true; break;
                 case UP:    up = true; break;
@@ -41,7 +40,7 @@ public class Bomber extends AnimatedEntity {
         });
 
         scene.setOnKeyReleased(keyEvent -> {
-            switch (keyEvent.getCode()){
+            switch (keyEvent.getCode()) {
                 case LEFT:  left = false;   break;
                 case RIGHT: right = false;  break;
                 case UP:    up = false; break;

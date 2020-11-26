@@ -9,6 +9,7 @@ import entities.tile.Brick;
 import entities.tile.Grass;
 import entities.tile.Portal;
 import entities.tile.Wall;
+import entities.tile.item.FlameItem;
 import graphics.Sprite;
 
 import java.io.BufferedReader;
@@ -96,12 +97,12 @@ public class LevelLoader {
                     // Thêm balloom
                     case '1':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
-                        entities.add(new Balloom(x, y, Sprite.balloom_right1.getFxImage()));
+                        entities.add(new Balloom(x, y, Sprite.balloom_right1.getFxImage(), stillObject));
                         break;
                     // Thêm oneal
                     case '2':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
-                        entities.add(new Oneal(x, y, Sprite.balloom_right1.getFxImage()));
+                        entities.add(new Oneal(x, y, Sprite.balloom_right1.getFxImage(), stillObject));
                         break;
                     // Thêm doll
                     case '3':
@@ -117,7 +118,9 @@ public class LevelLoader {
                         break;
                     // Thêm FlameItem
                     case 'f':
-
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new FlameItem(x, y, Sprite.powerup_flames.getFxImage())));
                         break;
 
                 }

@@ -10,6 +10,8 @@ public abstract class Enemy extends AnimatedEntity {
 
     protected AI enemyAI;
 
+
+
     public Enemy(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
     }

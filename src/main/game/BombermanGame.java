@@ -37,7 +37,9 @@ public class BombermanGame extends Application {
 
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0 ;
-    private boolean arrayFilled = false ;
+    private boolean arrayFilled = false;
+
+
 
 
     public static void main(String[] args) {
@@ -49,6 +51,7 @@ public class BombermanGame extends Application {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         gc = canvas.getGraphicsContext2D();
+
 
         Label label = new Label();
         Font font = Font.font("Consolas", 25);
