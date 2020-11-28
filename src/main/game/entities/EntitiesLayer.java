@@ -27,23 +27,27 @@ public class EntitiesLayer extends Entity {
 
     @Override
     public void update(Scene scene) {
-        getTopEntity().update(scene);
+        if (getTopEntity().isExist()) {
+            getTopEntity().update(scene);
+        } else {
+            layered_entity.remove(getTopEntity());
+        }
     }
 
     @Override
     public void render(GraphicsContext gc) {
-        getTopEntity().render(gc);
+        for (int i = 0; i < layered_entity.size(); ++i) {
+            layered_entity.get(i).render(gc);
+        }
     }
 
     public Entity getTopEntity() {
         return layered_entity.get(layered_entity.size() - 1);
     }
 
-    private void clearRemoved() {
-        Entity top  = getTopEntity();
-        if(!top.isExist())  {
-            layered_entity.remove(layered_entity.size() - 1);
-        }
+    @Override
+    public void remove() {
+        getTopEntity().remove();
     }
 
     @Override

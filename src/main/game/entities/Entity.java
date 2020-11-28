@@ -70,4 +70,9 @@ public abstract class Entity implements State {
     public int getY() {
         return y;
     }
+
+    public void setImage(Image img) {
+        this.img = img;
+    }
+
 }

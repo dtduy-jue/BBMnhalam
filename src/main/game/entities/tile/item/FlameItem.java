@@ -1,7 +1,7 @@
 package entities.tile.item;
 
 import entities.Entity;
-import entities.livingEntity.Bomber;
+import entities.animatedEntity.Bomber;
 import javafx.scene.image.Image;
 
 public class FlameItem extends Item {

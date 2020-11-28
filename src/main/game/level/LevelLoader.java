@@ -2,9 +2,10 @@ package level;
 
 import entities.EntitiesLayer;
 import entities.Entity;
-import entities.livingEntity.Bomber;
-import entities.livingEntity.enemy.Balloom;
-import entities.livingEntity.enemy.Oneal;
+import entities.animatedEntity.Bomber;
+import entities.animatedEntity.bomb.Bomb;
+import entities.animatedEntity.enemy.Balloom;
+import entities.animatedEntity.enemy.Oneal;
 import entities.tile.Brick;
 import entities.tile.Grass;
 import entities.tile.Portal;
@@ -22,13 +23,13 @@ public class LevelLoader {
 
     private static char[][] map;
 
-    public static void loadLevel(int level, List<Entity> entities, List<Entity> stillObject) {
-        clearCurrentLevel(entities, stillObject);
+    public static void loadLevel(int level, List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
+        clearCurrentLevel(entities, bombs, stillObject);
         loadLevelFromFile(level);
-        createEntities(entities, stillObject);
+        createEntities(entities, bombs, stillObject);
     }
 
-    private static void clearCurrentLevel(List<Entity> entities, List<Entity> stillObject) {
+    private static void clearCurrentLevel(List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
         entities.clear();
         stillObject.clear();
     }
@@ -62,7 +63,7 @@ public class LevelLoader {
         }
     }
 
-    public static void createEntities(List<Entity> entities, List<Entity> stillObject) {
+    public static void createEntities(List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 char c = map[y][x];
@@ -70,6 +71,7 @@ public class LevelLoader {
                     // Thêm grass
                     case ' ':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+
                         break;
                     // Thêm Wall
                     case '#':
@@ -91,13 +93,13 @@ public class LevelLoader {
                     // Thêm Bomber
                     case 'p':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
-                        entities.add(new Bomber(x, y, Sprite.player_right.getFxImage(), stillObject));
+                        entities.add(new Bomber(x, y, Sprite.player_right.getFxImage(), stillObject, bombs, entities));
                         break;
 
                     // Thêm balloom
                     case '1':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
-                        entities.add(new Balloom(x, y, Sprite.balloom_right1.getFxImage(), stillObject));
+                        entities.add(new Balloom(x, y, Sprite.balloom_right1.getFxImage(), stillObject, bombs));
                         break;
                     // Thêm oneal
                     case '2':
@@ -108,7 +110,7 @@ public class LevelLoader {
                     case '3':
 
                         break;
-                    // Thêm BomItem
+                     // Thêm BomItem
                     case 'b':
 
                         break;
