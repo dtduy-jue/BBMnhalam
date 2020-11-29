@@ -5,6 +5,7 @@ import entities.animatedEntity.enemy.AI.AI;
 import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import sound.Sound;
 
 public abstract class Enemy extends AnimatedEntity {
 
@@ -13,6 +14,8 @@ public abstract class Enemy extends AnimatedEntity {
     protected AI enemyAI;
 
     public int xUnit, yUnit;
+
+    protected Sound enemy_dead = new Sound("src\\main\\resources\\sound\\enemy_die.wav", false);
 
     public Enemy(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -23,6 +26,8 @@ public abstract class Enemy extends AnimatedEntity {
     public void update(Scene scene) {
     }
 
-    protected abstract void goDie();
+    protected void goDie() {
+        enemy_dead.playSound();
+    }
 
 }

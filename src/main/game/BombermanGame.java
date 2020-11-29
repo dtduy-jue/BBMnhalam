@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import entities.Entity;
 import graphics.Sprite;
 import level.LevelLoader;
+import sound.Sound;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -40,14 +41,15 @@ public class BombermanGame extends Application {
     private static List<Entity> stillObjects = new ArrayList<>();
     private static List<Bomb> bombs = new ArrayList<>();
 
-    private int level = 2;
+    private int level = 1;
 
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0 ;
     private boolean arrayFilled = false;
 
-
-
+    private Sound sound_background = new Sound("src\\main\\resources\\sound\\title_screen.mp3", true);
+    private Sound stage_start = new Sound("src\\main\\resources\\sound\\stage_start.mp3", false);
+    private Sound stage_theme = new Sound("src\\main\\resources\\sound\\stage_theme.mp3", true);
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -84,22 +86,7 @@ public class BombermanGame extends Application {
         button.setTranslateY(300);
         button.setScaleX(0.5);
         button.setScaleY(0.5);
-        button.setOnAction(event -> {
-            stage.setScene(levelScene);
-            AnimationTimer timer1 = new AnimationTimer() {
-                @Override
-                public void handle(long l) {
-                    timer_change -= 0.005;
-                    if (timer_change <= 0) {
-                        stop();
-                        stage.setScene(inGameScene);
-                        stage.show();
-                        System.out.println("Stopped 1");
-                    }
-                }
-            };
-            timer1.start();
-        });
+
 
         Group root1 = new Group();
         levelScene = new Scene(root1,900, 700, Color.BLACK);
@@ -110,13 +97,36 @@ public class BombermanGame extends Application {
 
         AnchorPane stackPane = new AnchorPane(imageView,button);
         menuScene = new Scene(stackPane);
-        // Tao scene2
-        inGameScene = new Scene(root);
 
         // Them scene vao stage
         stage.setScene(menuScene);
         stage.setResizable(false);
         stage.show();
+
+        //Chạy sound menu
+        sound_background.playSound();
+
+        // Tao scene2
+        inGameScene = new Scene(root);
+        button.setOnAction(event -> {
+            sound_background.stopSound();
+            stage_start.playSound();
+            stage.setScene(levelScene);
+            AnimationTimer timer1 = new AnimationTimer() {
+                @Override
+                public void handle(long l) {
+                    timer_change -= 0.005;
+                    if (timer_change <= 0) {
+                        stop();
+                        stage_start.stopSound();
+                        stage_theme.playSound();
+                        stage.setScene(inGameScene);
+                        stage.show();
+                    }
+                }
+            };
+            timer1.start();
+        });
 
         LevelLoader.loadLevel(level, entities, bombs, stillObjects);
 

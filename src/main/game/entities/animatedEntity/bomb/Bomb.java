@@ -10,6 +10,7 @@ import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import sound.Sound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Bomb extends AnimatedEntity {
 
     public static int flame_length = 1;
 
-    private int remaining_tick = 120;
+    public int remaining_tick = 120;
 
     private List<Explosion> explosion = new ArrayList<>();
 
@@ -26,11 +27,19 @@ public class Bomb extends AnimatedEntity {
 
     private List<Entity> entities;
 
-    public Bomb(int xUnit, int yUnit, Image img, List<Entity> e, List<Entity> entities) {
+    private static List<Bomb> bombs;
+
+    private Sound bomb_sound = new Sound("src\\main\\resources\\sound\\bomb_put.wav", false);
+    private Sound bomb_explode = new Sound("src\\main\\resources\\sound\\explosion.wav", false);
+
+
+    public Bomb(int xUnit, int yUnit, Image img, List<Entity> e, List<Entity> entities, List<Bomb> b) {
         super(xUnit, yUnit, img);
         dead_animation_tick = FRAME_CYCLE / 2;
         stillObjects = e;
         this.entities = entities;
+        bombs = b;
+        bomb_sound.playSound();
     }
 
     @Override
@@ -65,6 +74,8 @@ public class Bomb extends AnimatedEntity {
                     if (((EntitiesLayer) e).getTopEntity() instanceof Brick) {
                         e.collide(current_flame);
                     }
+                } else if (e instanceof Bomb) {
+                    ((Bomb) e).remaining_tick = 0;
                 }
                 for (Entity res : entities) {
                     if (res instanceof Enemy && Math.abs(current_flame_X - res.getX()) < (Sprite.SCALED_SIZE - 4) && Math.abs(current_flame_Y - res.getY()) < (Sprite.SCALED_SIZE - 4)) {
@@ -81,7 +92,6 @@ public class Bomb extends AnimatedEntity {
         Entity e = searchEntity(current_flame_x, current_flame_y);
         if (e instanceof EntitiesLayer) {
             if (((EntitiesLayer) e).getTopEntity() instanceof Brick) {
-
                 return true;
             }
         }
@@ -121,15 +131,20 @@ public class Bomb extends AnimatedEntity {
         }
     }
 
-    private void explode() {
+    public void explode() {
         alive = false;
+        bomb_explode.playSound(5);
         for (int i = 0; i < 4; ++i) {
             explosion.add(new Explosion(this.x, this.y, flame_length, i + 1, stillObjects));
         }
     }
 
     public static Entity searchEntity(int x, int y) {
-
+        for (Bomb res : bombs) {
+            if (res.getX() == x && res.getY() == y) {
+                return res;
+            }
+        }
         for (Entity res : stillObjects) {
             if (res.getX() == x && res.getY() == y) {
                 return res;

@@ -20,9 +20,7 @@ public class Brick extends AnimatedEntity {
                 img = Sprite.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2, frame, FRAME_CYCLE / 2).getFxImage();
                 animate();
                 --dead_animation_tick;
-                System.out.println(dead_animation_tick);
             } else {
-                System.out.println("dm");
                 remove();
             }
         }

@@ -70,7 +70,8 @@ public class LevelLoader {
                 switch (c) {
                     // Thêm grass
                     case ' ':
-                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage())));
 
                         break;
                     // Thêm Wall
@@ -104,7 +105,7 @@ public class LevelLoader {
                     // Thêm oneal
                     case '2':
                         stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
-                        entities.add(new Oneal(x, y, Sprite.balloom_right1.getFxImage(), stillObject));
+                        entities.add(new Oneal(x, y, Sprite.balloom_right1.getFxImage(), stillObject, bombs));
                         break;
                     // Thêm doll
                     case '3':

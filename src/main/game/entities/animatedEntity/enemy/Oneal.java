@@ -1,6 +1,7 @@
 package entities.animatedEntity.enemy;
 
 import entities.Entity;
+import entities.animatedEntity.bomb.Bomb;
 import entities.animatedEntity.enemy.AI.BalloomAI;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -12,11 +13,14 @@ public class Oneal extends Enemy {
 
     List<Entity> stillObjects;
 
-    public Oneal(int x, int y, Image img, List<Entity> e) {
+    List<Bomb> bombs;
+
+    public Oneal(int x, int y, Image img, List<Entity> e, List<Bomb> b) {
         super( x, y, img);
         stillObjects = e;
         speed = 2;
         enemyAI = new BalloomAI();
+        bombs = b;
     }
 
     @Override
@@ -124,6 +128,11 @@ public class Oneal extends Enemy {
         x += speed;
     }
     public Entity searchEntity(int x, int y) {
+        for (Bomb bomb : bombs) {
+            if (bomb.getX() == x && bomb.getY() == y) {
+                return bomb;
+            }
+        }
         for (Entity res : stillObjects) {
             if (res.getX() == x && res.getY() == y) {
                 return res;
