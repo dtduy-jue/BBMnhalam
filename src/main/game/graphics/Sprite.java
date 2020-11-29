@@ -2,13 +2,15 @@ package graphics;
 
 import javafx.scene.image.*;
 
+import java.util.Arrays;
+
 /**
  * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
  */
 public class Sprite {
 	
 	public static final int DEFAULT_SIZE = 16;
-	public static final int SCALED_SIZE = DEFAULT_SIZE * 2;
+	public static final int SCALED_SIZE = DEFAULT_SIZE * 3;
     private static final int TRANSPARENT_COLOR = 0xffff00ff;
 	public final int SIZE;
 	private int _x, _y;
@@ -16,6 +18,7 @@ public class Sprite {
 	protected int _realWidth;
 	protected int _realHeight;
 	private SpriteSheet _sheet;
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -181,6 +184,7 @@ public class Sprite {
 	public static Sprite powerup_detonator = new Sprite(DEFAULT_SIZE, 4, 10, SpriteSheet.tiles, 16, 16);
 	public static Sprite powerup_bombpass = new Sprite(DEFAULT_SIZE, 5, 10, SpriteSheet.tiles, 16, 16);
 	public static Sprite powerup_flamepass = new Sprite(DEFAULT_SIZE, 6, 10, SpriteSheet.tiles, 16, 16);
+    public static Sprite powerup_random = new Sprite(DEFAULT_SIZE, 7, 10, SpriteSheet.tiles, 16, 16);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
 		SIZE = size;
@@ -200,9 +204,7 @@ public class Sprite {
 	}
 	
 	private void setColor(int color) {
-		for (int i = 0; i < _pixels.length; i++) {
-			_pixels[i] = color;
-		}
+        Arrays.fill(_pixels, color);
 	}
 
 	private void load() {
@@ -230,7 +232,7 @@ public class Sprite {
 	
 	public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int time) {
 		int diff = time / 2;
-		return (animate % time > diff) ? x1 : x2; 
+		return (animate < diff) ? x1 : x2;
 	}
 	
 	public int getSize() {
