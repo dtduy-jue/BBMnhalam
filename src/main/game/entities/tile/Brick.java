@@ -2,13 +2,15 @@ package entities.tile;
 
 import entities.AnimatedEntity;
 import entities.Entity;
+import entities.animatedEntity.Bomber;
 import entities.animatedEntity.bomb.Flame;
+import entities.tile.item.WallPassItem;
 import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class Brick extends AnimatedEntity {
-
+    public static boolean wallPassItem = false;
     public Brick(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
         dead_animation_tick = FRAME_CYCLE / 2;
@@ -31,6 +33,8 @@ public class Brick extends AnimatedEntity {
         if (e instanceof Flame) {
             alive = false;
         }
+        if (wallPassItem && e instanceof Bomber)
+            return true;
         return false;
     }
 }

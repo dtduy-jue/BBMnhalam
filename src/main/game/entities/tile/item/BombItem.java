@@ -13,7 +13,7 @@ public class BombItem extends Item {
     public boolean collide(Entity e) {
 
         if (e instanceof Bomber) {
-            // làm gì đó để bomber đặt đc 2 quả bom
+            ((Bomber) e).bombItem();
             remove();
         }
         return false;

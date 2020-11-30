@@ -10,7 +10,10 @@ import entities.tile.Brick;
 import entities.tile.Grass;
 import entities.tile.Portal;
 import entities.tile.Wall;
+import entities.tile.item.BombItem;
 import entities.tile.item.FlameItem;
+import entities.tile.item.SpeedItem;
+import entities.tile.item.WallPassItem;
 import graphics.Sprite;
 
 import java.io.BufferedReader;
@@ -113,17 +116,29 @@ public class LevelLoader {
                         break;
                      // Thêm BomItem
                     case 'b':
-
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new BombItem(x, y, Sprite.powerup_bombs.getFxImage())));
                         break;
+
                     // Thêm SpeedItem
                     case 's':
-
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new SpeedItem(x, y, Sprite.powerup_speed.getFxImage())));
                         break;
+
                     // Thêm FlameItem
                     case 'f':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
                                 new FlameItem(x, y, Sprite.powerup_flames.getFxImage())));
+                        break;
+
+                    case 'w':
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new WallPassItem(x, y, Sprite.powerup_wallpass.getFxImage())));
                         break;
 
                 }

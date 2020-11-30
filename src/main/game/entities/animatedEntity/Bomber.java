@@ -5,6 +5,7 @@ import entities.Entity;
 import entities.AnimatedEntity;
 import entities.animatedEntity.bomb.Bomb;
 import entities.animatedEntity.enemy.Enemy;
+import entities.tile.Brick;
 import entities.tile.Grass;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,12 +19,12 @@ import java.util.List;
  *  Người chơi.
  */
 public class Bomber extends AnimatedEntity {
-
     private boolean left, right, up, down, bomb = false;
 
     private boolean bombPass = false;
 
-    private int bomb_set;
+    private int bomb_set = 1;
+    private int speed = 2;
 
     private int lives = 3;
 
@@ -40,8 +41,6 @@ public class Bomber extends AnimatedEntity {
     public Bomber(int x, int y, Image img, List<Entity> e, List<Bomb> bombs, List<Entity> movingObject) {
         super( x, y, img);
         stillObjects = e;
-        speed = 2;
-        bomb_set = 3;
         this.movingObject = movingObject;
         this.bombs = bombs;
     }
@@ -320,6 +319,23 @@ public class Bomber extends AnimatedEntity {
             }
         }
         return false;
+    }
+
+    public void speedUpItem() {
+        this.speed = 3;
+    }
+
+    public void bombItem() {
+        this.bomb_set++;
+    }
+
+    public void flameItem() {
+        Bomb.flame_length++;
+    }
+
+    public void wallPassItem() {
+        Brick.wallPassItem = true;
+
     }
 
 }

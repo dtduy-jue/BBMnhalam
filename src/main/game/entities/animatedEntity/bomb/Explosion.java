@@ -42,7 +42,8 @@ public class Explosion extends AnimatedEntity {
                     break;
                 }
             }
-            if (e instanceof Wall)    break;
+            if (e instanceof Wall)
+                break;
             ++this.length;
         }
         anotherX = x;
