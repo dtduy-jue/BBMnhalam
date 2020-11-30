@@ -3,22 +3,21 @@ package entities.animatedEntity.enemy;
 import entities.Entity;
 import entities.animatedEntity.bomb.Bomb;
 import entities.animatedEntity.enemy.AI.BalloomAI;
+import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import graphics.Sprite;
 
 import java.util.List;
 
-public class Oneal extends Enemy {
-
+public class Minvo extends Enemy {
     List<Entity> stillObjects;
 
     List<Bomb> bombs;
 
-    public Oneal(int x, int y, Image img, List<Entity> e, List<Bomb> b) {
+    public Minvo(int x, int y, Image img, List<Entity> e, List<Bomb> b) {
         super( x, y, img);
         stillObjects = e;
-        speed = 2;
+        speed = 4;
         enemyAI = new BalloomAI();
         bombs = b;
     }
@@ -151,15 +150,16 @@ public class Oneal extends Enemy {
             case 0:
             case 1:
             case 3:
-                img = Sprite.movingSprite(Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3, frame, FRAME_CYCLE).getFxImage();     break;
+                img = Sprite.movingSprite(Sprite.minvo_left1, Sprite.minvo_left2, Sprite.minvo_left3, frame, FRAME_CYCLE).getFxImage();     break;
             case 2: case 4:
-                img = Sprite.movingSprite(Sprite.oneal_right1, Sprite.oneal_right2, Sprite.oneal_right3, frame, FRAME_CYCLE).getFxImage();    break;
+                img = Sprite.movingSprite(Sprite.minvo_right1, Sprite.minvo_right2, Sprite.minvo_right3, frame, FRAME_CYCLE).getFxImage();    break;
         }
     }
 
     protected void goDie() {
+        System.out.println(dead_animation_tick);
         if (dead_animation_tick < 0) {
-            img = Sprite.oneal_dead.getFxImage();
+            img = Sprite.minvo_dead.getFxImage();
             ++dead_animation_tick;
         } else if (dead_animation_tick < FRAME_CYCLE / 2) {
             img = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, dead_animation_tick, FRAME_CYCLE / 2).getFxImage();

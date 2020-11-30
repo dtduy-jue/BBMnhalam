@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bomb extends AnimatedEntity {
-
+    public static boolean flamePass = false;
     public static int flame_length = 1;
+    public static boolean bombPass = false;
 
     public int remaining_tick = 120;
 
@@ -80,7 +81,7 @@ public class Bomb extends AnimatedEntity {
                 for (Entity res : entities) {
                     if (res instanceof Enemy && Math.abs(current_flame_X - res.getX()) < (Sprite.SCALED_SIZE - 4) && Math.abs(current_flame_Y - res.getY()) < (Sprite.SCALED_SIZE - 4)) {
                         ((Enemy) res).kill();
-                    } else if (res instanceof Bomber && Math.abs(current_flame_X - res.getX()) < (Sprite.SCALED_SIZE - 12) && Math.abs(current_flame_Y - res.getY()) < (Sprite.SCALED_SIZE - 4)) {
+                    } else if (res instanceof Bomber && Math.abs(current_flame_X - res.getX()) < (Sprite.SCALED_SIZE - 12) && Math.abs(current_flame_Y - res.getY()) < (Sprite.SCALED_SIZE - 4) && !flamePass) {
                         ((Bomber) res).kill();
                     }
                 }
@@ -122,6 +123,8 @@ public class Bomb extends AnimatedEntity {
     }
 
     public boolean collide (Entity e) {
+        if (bombPass && e instanceof Bomber)
+            return true;
         return false;
     }
 
