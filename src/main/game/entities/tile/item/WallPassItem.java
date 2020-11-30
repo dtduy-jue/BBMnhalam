@@ -15,6 +15,6 @@ public class WallPassItem extends Item {
             ((Bomber) e).wallPassItem();
             remove();
         }
-        return false;
+        return true;
     }
 }
