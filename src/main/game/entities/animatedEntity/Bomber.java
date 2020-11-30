@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class Bomber extends AnimatedEntity {
     private boolean left, right, up, down, bomb = false;
-
+    private static boolean temp = true;
     private boolean bombPass = false;
 
     private int bomb_set = 1;
@@ -335,7 +335,18 @@ public class Bomber extends AnimatedEntity {
 
     public void wallPassItem() {
         Brick.wallPassItem = true;
+    }
 
+    public void loadLevel() {
+        temp = false;
+    }
+
+    public void flamePassItem() {
+        Bomb.flamePass = true;
+    }
+
+    public void bombPassItem() {
+        Bomb.bombPass = true;
     }
 
 }

@@ -29,6 +29,7 @@ import java.util.List;
 public class BombermanGame extends Application {
 
     private Scene menuScene, levelScene, inGameScene;
+    public static boolean temp = false;
 
     public double timer_change = 1;
     

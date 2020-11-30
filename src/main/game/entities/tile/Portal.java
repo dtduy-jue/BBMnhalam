@@ -1,6 +1,7 @@
 package entities.tile;
 
 import entities.Entity;
+import entities.animatedEntity.Bomber;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
@@ -16,6 +17,10 @@ public class Portal extends Tile {
 
     @Override
     public boolean collide(Entity e) {
+        if (e instanceof Bomber) {
+            ((Bomber) e).loadLevel();
+
+        }
         return true;
     }
 }

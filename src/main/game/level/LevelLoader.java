@@ -10,10 +10,7 @@ import entities.tile.Brick;
 import entities.tile.Grass;
 import entities.tile.Portal;
 import entities.tile.Wall;
-import entities.tile.item.BombItem;
-import entities.tile.item.FlameItem;
-import entities.tile.item.SpeedItem;
-import entities.tile.item.WallPassItem;
+import entities.tile.item.*;
 import graphics.Sprite;
 
 import java.io.BufferedReader;
@@ -141,6 +138,16 @@ public class LevelLoader {
                                 new WallPassItem(x, y, Sprite.powerup_wallpass.getFxImage())));
                         break;
 
+                    case 'y':
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new FlamePassItem(x, y, Sprite.powerup_flamepass.getFxImage())));
+                        break;
+                    case 'o':
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new BombPassItem(x, y, Sprite.powerup_bombpass.getFxImage())));
+                        break;
                 }
             }
         }
