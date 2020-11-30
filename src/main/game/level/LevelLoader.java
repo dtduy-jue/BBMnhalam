@@ -4,8 +4,7 @@ import entities.EntitiesLayer;
 import entities.Entity;
 import entities.animatedEntity.Bomber;
 import entities.animatedEntity.bomb.Bomb;
-import entities.animatedEntity.enemy.Balloom;
-import entities.animatedEntity.enemy.Oneal;
+import entities.animatedEntity.enemy.*;
 import entities.tile.Brick;
 import entities.tile.Grass;
 import entities.tile.Portal;
@@ -25,6 +24,11 @@ public class LevelLoader {
 
     public static void loadLevel(int level, List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
         clearCurrentLevel(entities, bombs, stillObject);
+        loadLevelFromFile(level);
+        createEntities(entities, bombs, stillObject);
+    }
+
+    public static void loadLevelWthoutClearing(int level, List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
         loadLevelFromFile(level);
         createEntities(entities, bombs, stillObject);
     }
@@ -109,8 +113,20 @@ public class LevelLoader {
                         break;
                     // Thêm doll
                     case '3':
-
+                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        entities.add(new Doll(x, y, Sprite.doll_right1.getFxImage(), stillObject, bombs));
                         break;
+
+                    case '4':
+                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        entities.add(new Minvo(x, y, Sprite.minvo_right1.getFxImage(), stillObject, bombs));
+                        break;
+
+                    case '5':
+                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        entities.add(new Kondoria(x, y, Sprite.kondoria_right1.getFxImage(), stillObject, bombs));
+                        break;
+
                      // Thêm BomItem
                     case 'b':
                         stillObject.add(new EntitiesLayer(x, y,
