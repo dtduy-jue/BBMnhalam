@@ -14,6 +14,7 @@ public class FlameItem extends Item {
     public boolean collide(Entity e) {
 
         if (e instanceof Bomber) {
+            ((Bomber) e).flameItem();
             remove();
         }
         return true;

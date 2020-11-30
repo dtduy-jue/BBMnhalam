@@ -4,13 +4,12 @@ import entities.EntitiesLayer;
 import entities.Entity;
 import entities.animatedEntity.Bomber;
 import entities.animatedEntity.bomb.Bomb;
-import entities.animatedEntity.enemy.Balloom;
-import entities.animatedEntity.enemy.Oneal;
+import entities.animatedEntity.enemy.*;
 import entities.tile.Brick;
 import entities.tile.Grass;
 import entities.tile.Portal;
 import entities.tile.Wall;
-import entities.tile.item.FlameItem;
+import entities.tile.item.*;
 import graphics.Sprite;
 
 import java.io.BufferedReader;
@@ -19,12 +18,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelLoader {
-    private static int height = 20, width = 20, level;
+    private static int height = 20, width = 20;
+
+    public static int level;
 
     private static char[][] map;
 
-    public static void loadLevel(int level, List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
+    public static void loadLevel(int lv, List<Entity> entities, List<Entity> stillObject, List<Bomb> bombs) {
+        level = lv;
         clearCurrentLevel(entities, bombs, stillObject);
+        loadLevelFromFile(level);
+        createEntities(entities, bombs, stillObject);
+    }
+
+    public static void loadLevelWthoutClearing(int level, List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
         loadLevelFromFile(level);
         createEntities(entities, bombs, stillObject);
     }
@@ -82,7 +89,7 @@ public class LevelLoader {
                     case 'x':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new Portal(x, y, Sprite.portal.getFxImage()),
+                                new Portal(x, y, Sprite.portal.getFxImage(), entities, stillObject, bombs),
                                 new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
                     // Thêm brick
@@ -109,23 +116,63 @@ public class LevelLoader {
                         break;
                     // Thêm doll
                     case '3':
-
+                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        entities.add(new Doll(x, y, Sprite.doll_right1.getFxImage(), stillObject, bombs));
                         break;
+
+                    case '4':
+                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        entities.add(new Minvo(x, y, Sprite.minvo_right1.getFxImage(), stillObject, bombs));
+                        break;
+
+                    case '5':
+                        stillObject.add(new Grass(x, y, Sprite.grass.getFxImage()));
+                        entities.add(new Kondoria(x, y, Sprite.kondoria_right1.getFxImage(), stillObject, bombs));
+                        break;
+
                      // Thêm BomItem
                     case 'b':
-
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new BombItem(x, y, Sprite.powerup_bombs.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
+
                     // Thêm SpeedItem
                     case 's':
-
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new SpeedItem(x, y, Sprite.powerup_speed.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
+
                     // Thêm FlameItem
                     case 'f':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new FlameItem(x, y, Sprite.powerup_flames.getFxImage())));
+                                new FlameItem(x, y, Sprite.powerup_flames.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
 
+                    case 'w':
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new WallPassItem(x, y, Sprite.powerup_wallpass.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
+                        break;
+
+                    case 'y':
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new FlamePassItem(x, y, Sprite.powerup_flamepass.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
+                        break;
+                    case 'o':
+                        stillObject.add(new EntitiesLayer(x, y,
+                                new Grass(x, y, Sprite.grass.getFxImage()),
+                                new BombPassItem(x, y, Sprite.powerup_bombpass.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
+                        break;
                 }
             }
         }

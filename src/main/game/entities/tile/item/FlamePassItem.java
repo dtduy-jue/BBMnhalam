@@ -4,8 +4,8 @@ import entities.Entity;
 import entities.animatedEntity.Bomber;
 import javafx.scene.image.Image;
 
-public class BombItem extends Item {
-    public BombItem(int x, int y, Image img) {
+public class FlamePassItem extends Item {
+    public FlamePassItem(int x, int y, Image img) {
         super(x, y, img);
     }
 
@@ -13,9 +13,9 @@ public class BombItem extends Item {
     public boolean collide(Entity e) {
 
         if (e instanceof Bomber) {
-            ((Bomber) e).bombItem();
+            ((Bomber) e).flamePassItem();
             remove();
         }
-        return true;
+        return false;
     }
 }

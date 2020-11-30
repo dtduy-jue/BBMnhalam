@@ -12,8 +12,9 @@ public class SpeedItem extends Item {
     @Override
     public boolean collide(Entity e) {
         if (e instanceof Bomber) {
+            ((Bomber) e).speedUpItem();
             remove();
         }
-        return false;
+        return true;
     }
 }

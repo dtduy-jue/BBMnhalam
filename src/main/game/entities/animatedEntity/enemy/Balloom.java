@@ -157,7 +157,6 @@ public class Balloom extends Enemy {
 
     protected void goDie() {
         super.goDie();
-        System.out.println(dead_animation_tick);
         if (dead_animation_tick < 0) {
             img = Sprite.balloom_dead.getFxImage();
             ++dead_animation_tick;

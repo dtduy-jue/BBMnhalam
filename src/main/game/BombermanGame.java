@@ -1,3 +1,4 @@
+import entities.animatedEntity.Bomber;
 import entities.animatedEntity.bomb.Bomb;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -29,6 +30,7 @@ import java.util.List;
 public class BombermanGame extends Application {
 
     private Scene menuScene, levelScene, inGameScene;
+    public static boolean temp = false;
 
     public double timer_change = 1;
     
@@ -41,7 +43,7 @@ public class BombermanGame extends Application {
     private static List<Entity> stillObjects = new ArrayList<>();
     private static List<Bomb> bombs = new ArrayList<>();
 
-    private int level = 1;
+    public static int level = 1;
 
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0 ;
@@ -71,47 +73,46 @@ public class BombermanGame extends Application {
         root.getChildren().add(canvas);
         root.getChildren().add(label);
 
-        // Tao scene1
+        /* Tao menuScene */
+        //Anh menu
         File file = new File("src\\main\\resources\\textures\\menu.png");
         Image image = new Image(file.toURI().toURL().toString());
         ImageView imageView = new ImageView(image);
-
+        //Anh nut play
         File file1 = new File("src\\main\\resources\\textures\\start.jpg");
         Image image1 = new Image(file1.toURI().toURL().toString());
         ImageView imageView1 = new ImageView(image1);
-
+        //Nut play
         Button button = new Button("", imageView1);
         button.setStyle("-fx-background-color: #FF6347");
         button.setTranslateX(300);
         button.setTranslateY(300);
         button.setScaleX(0.5);
         button.setScaleY(0.5);
+        //Scene cho menu
+        AnchorPane an = new AnchorPane(imageView,button);
+        menuScene = new Scene(an);
+        // Them scene vao stage
+        stage.setScene(menuScene);
+        stage.setResizable(false);
+        stage.show();
+        //Chạy sound menu
+        sound_background.playSound();
 
-
+        /* Tao scene level va scene ingame */
         Group root1 = new Group();
         levelScene = new Scene(root1,900, 700, Color.BLACK);
         final Text text1 = new Text(350, 350, "LEVEL " + level);
         text1.setFill(Color.CHOCOLATE);
         text1.setFont(Font.font ("Verdana", 50));
         root1.getChildren().add(text1);
-
-        AnchorPane stackPane = new AnchorPane(imageView,button);
-        menuScene = new Scene(stackPane);
-
-        // Them scene vao stage
-        stage.setScene(menuScene);
-        stage.setResizable(false);
-        stage.show();
-
-        //Chạy sound menu
-        sound_background.playSound();
-
-        // Tao scene2
-        inGameScene = new Scene(root);
+        //Bam nut play
         button.setOnAction(event -> {
+            inGameScene = new Scene(root);
             sound_background.stopSound();
             stage_start.playSound();
             stage.setScene(levelScene);
+            LevelLoader.loadLevel(level, entities, stillObjects, bombs);
             AnimationTimer timer1 = new AnimationTimer() {
                 @Override
                 public void handle(long l) {
@@ -127,8 +128,43 @@ public class BombermanGame extends Application {
             };
             timer1.start();
         });
+        //Tao game over scene
+        Scene gameOver;
+        Group group2 = new Group();
+        gameOver = new Scene(group2,900, 700, Color.BLACK);
+        final Text text2 = new Text(275, 350, "GAME OVER!");
+        text2.setFill(Color.CHOCOLATE);
+        text2.setFont(Font.font("Verdana", 50));
 
-        LevelLoader.loadLevel(level, entities, bombs, stillObjects);
+        Button button1 = new Button("PLAY AGAIN");
+        button1.setTranslateX(400);
+        button1.setTranslateY(500);
+        button1.setScaleX(2);
+        button1.setScaleY(2);
+        group2.getChildren().addAll(button1, text2);
+        button1.setOnAction(event -> {
+            sound_background.stopSound();
+            stage_start.playSound();
+            stage.setScene(levelScene);
+            AnimationTimer timer1 = new AnimationTimer() {
+                @Override
+                public void handle(long l) {
+                    timer_change -= 0.005;
+                    if (timer_change <= 0) {
+                        stop();
+                        stage_start.stopSound();
+                        stage_theme.playSound();
+                        stage.setScene(inGameScene);
+                        stage.show();
+                        LevelLoader.loadLevel(level, entities, stillObjects, bombs);
+                    }
+                }
+            };
+            timer1.start();
+        });
+
+
+
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -144,10 +180,18 @@ public class BombermanGame extends Application {
                     long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
                     double frameRate = 1_000_000_000.0 / elapsedNanosPerFrame;
                     stage.setTitle(String.format("Bomberman is running | FPS: %.3f", frameRate));
-                    label.setText(String.format("%.3f", frameRate));
+                    label.setText("LEVEL " + level);
                 }
                 update(inGameScene);
                 render();
+
+
+
+
+                if (!Bomber.isAlive) {
+                    stage.setScene(gameOver);
+                    Bomber.isAlive = true;
+                }
             }
         };
         timer.start();
