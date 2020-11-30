@@ -15,6 +15,6 @@ public class SpeedItem extends Item {
             ((Bomber) e).speedUpItem();
             remove();
         }
-        return false;
+        return true;
     }
 }

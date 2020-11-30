@@ -16,6 +16,6 @@ public class BombItem extends Item {
             ((Bomber) e).bombItem();
             remove();
         }
-        return false;
+        return true;
     }
 }

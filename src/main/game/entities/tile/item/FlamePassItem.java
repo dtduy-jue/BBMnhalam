@@ -16,6 +16,6 @@ public class FlamePassItem extends Item {
             ((Bomber) e).flamePassItem();
             remove();
         }
-        return false;
+        return true;
     }
 }

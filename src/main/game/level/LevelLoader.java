@@ -131,38 +131,44 @@ public class LevelLoader {
                     case 'b':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new BombItem(x, y, Sprite.powerup_bombs.getFxImage())));
+                                new BombItem(x, y, Sprite.powerup_bombs.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
 
                     // Thêm SpeedItem
                     case 's':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new SpeedItem(x, y, Sprite.powerup_speed.getFxImage())));
+                                new SpeedItem(x, y, Sprite.powerup_speed.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
 
                     // Thêm FlameItem
                     case 'f':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new FlameItem(x, y, Sprite.powerup_flames.getFxImage())));
+                                new FlameItem(x, y, Sprite.powerup_flames.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
 
                     case 'w':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new WallPassItem(x, y, Sprite.powerup_wallpass.getFxImage())));
+                                new WallPassItem(x, y, Sprite.powerup_wallpass.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
 
                     case 'y':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new FlamePassItem(x, y, Sprite.powerup_flamepass.getFxImage())));
+                                new FlamePassItem(x, y, Sprite.powerup_flamepass.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
                     case 'o':
                         stillObject.add(new EntitiesLayer(x, y,
                                 new Grass(x, y, Sprite.grass.getFxImage()),
-                                new BombPassItem(x, y, Sprite.powerup_bombpass.getFxImage())));
+                                new BombPassItem(x, y, Sprite.powerup_bombpass.getFxImage()),
+                                new Brick(x, y, Sprite.brick.getFxImage())));
                         break;
                 }
             }

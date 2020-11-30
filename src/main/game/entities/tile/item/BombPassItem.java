@@ -16,6 +16,6 @@ public class BombPassItem extends Item{
             ((Bomber) e).bombPassItem();
             remove();
         }
-        return false;
+        return true;
     }
 }

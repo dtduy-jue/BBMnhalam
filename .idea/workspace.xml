@@ -24,12 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="717a1cc4-6cb7-4d78-9b1e-9887f57e7962" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/game/entities/animatedEntity/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/animatedEntity/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/game/entities/animatedEntity/bomb/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/animatedEntity/bomb/Explosion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/Brick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/item/BombItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/item/BombItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/item/FlameItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/item/FlameItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/item/BombPassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/item/BombPassItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/item/FlamePassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/item/FlamePassItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/item/SpeedItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/item/SpeedItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/game/entities/tile/item/WallPassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/entities/tile/item/WallPassItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/game/level/LevelLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game/level/LevelLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/Level1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/levels/Level1.txt" afterDir="false" />
@@ -69,10 +68,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TEST CLASSES - temp/bomberman-starter-starter-2/bomberman-starter-starter-2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/levels" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\BBMnhalam\src\main\resources\levels" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -143,25 +147,25 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="438" y="180" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1606012047015" />
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1606680089137">
+    <state width="1493" height="233" key="GridCell.Tab.0.bottom" timestamp="1606731108844">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606680089137" />
+    <state width="1493" height="233" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606731108844" />
     <state width="1557" height="234" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1606317904096" />
-    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1606680089137">
+    <state width="1493" height="233" key="GridCell.Tab.0.center" timestamp="1606731108844">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606680089137" />
+    <state width="1493" height="233" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606731108844" />
     <state width="1557" height="234" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1606317904096" />
-    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1606680089137">
+    <state width="1493" height="233" key="GridCell.Tab.0.left" timestamp="1606731108844">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606680089137" />
+    <state width="1493" height="233" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606731108844" />
     <state width="1557" height="234" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1606317904096" />
-    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1606680089137">
+    <state width="1493" height="233" key="GridCell.Tab.0.right" timestamp="1606731108844">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606680089137" />
+    <state width="1493" height="233" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606731108844" />
     <state width="1557" height="234" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1606317904096" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1606680089137">
       <screen x="0" y="0" width="1536" height="824" />
