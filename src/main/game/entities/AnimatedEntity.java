@@ -1,6 +1,5 @@
 package entities;
 
-import entities.Entity;
 import graphics.Sprite;
 import javafx.scene.image.Image;
 
@@ -41,9 +40,5 @@ public abstract class AnimatedEntity extends Entity {
 
     public void kill() {
         alive = false;
-    }
-
-    public boolean isAlive() {
-        return alive;
     }
 }

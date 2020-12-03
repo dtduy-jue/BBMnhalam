@@ -5,7 +5,6 @@ import graphics.State;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import graphics.Sprite;
 
 /**
  *  Vật thể chung nhất.

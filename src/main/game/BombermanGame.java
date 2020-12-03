@@ -25,12 +25,11 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
-// Các thay đổi code của ae//
 
 public class BombermanGame extends Application {
 
-    private Scene menuScene, levelScene, inGameScene;
-    public static boolean temp = false;
+    private Scene levelScene;
+    private Scene inGameScene;
 
     public double timer_change = 1;
     
@@ -43,15 +42,16 @@ public class BombermanGame extends Application {
     private static List<Entity> stillObjects = new ArrayList<>();
     private static List<Bomb> bombs = new ArrayList<>();
 
-    public static int level = 1;
-
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0 ;
     private boolean arrayFilled = false;
 
-    private Sound sound_background = new Sound("src\\main\\resources\\sound\\title_screen.mp3", true);
-    private Sound stage_start = new Sound("src\\main\\resources\\sound\\stage_start.mp3", false);
-    private Sound stage_theme = new Sound("src\\main\\resources\\sound\\stage_theme.mp3", true);
+    private final Sound sound_background = new Sound("src\\main\\resources\\sound\\title_screen.mp3", true);
+    private final Sound stage_start = new Sound("src\\main\\resources\\sound\\stage_start.mp3", false);
+    private final Sound stage_theme = new Sound("src\\main\\resources\\sound\\stage_theme.mp3", true);
+    private final Sound game_over = new Sound("src\\main\\resources\\sound\\game_over.mp3", true);
+    private final Sound all_enemy_dead = new Sound("src\\main\\resources\\sound\\all_enemies_slain.wav", false);
+    private final Sound find_the_exit = new Sound("src\\main\\resources\\sound\\find_the_exit.mp3", true);
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -91,18 +91,21 @@ public class BombermanGame extends Application {
         button.setScaleY(0.5);
         //Scene cho menu
         AnchorPane an = new AnchorPane(imageView,button);
-        menuScene = new Scene(an);
+        Scene menuScene = new Scene(an);
         // Them scene vao stage
         stage.setScene(menuScene);
         stage.setResizable(false);
+        stage.setX(250);
+        stage.setY(50);
+        stage.setTitle("Bomberman nhà làm");
         stage.show();
         //Chạy sound menu
         sound_background.playSound();
 
-        /* Tao scene level va scene ingame */
+        /* Tao scene LevelLoader.level va scene ingame */
         Group root1 = new Group();
         levelScene = new Scene(root1,900, 700, Color.BLACK);
-        final Text text1 = new Text(350, 350, "LEVEL " + level);
+        final Text text1 = new Text(350, 350, "LEVEL " + LevelLoader.level);
         text1.setFill(Color.CHOCOLATE);
         text1.setFont(Font.font ("Verdana", 50));
         root1.getChildren().add(text1);
@@ -112,13 +115,16 @@ public class BombermanGame extends Application {
             sound_background.stopSound();
             stage_start.playSound();
             stage.setScene(levelScene);
-            LevelLoader.loadLevel(level, entities, stillObjects, bombs);
+            LevelLoader.loadLevel(entities, stillObjects, bombs);
+            update(inGameScene);
             AnimationTimer timer1 = new AnimationTimer() {
                 @Override
                 public void handle(long l) {
                     timer_change -= 0.005;
                     if (timer_change <= 0) {
                         stop();
+                        stage.setX(50);
+                        timer_change = 1;
                         stage_start.stopSound();
                         stage_theme.playSound();
                         stage.setScene(inGameScene);
@@ -133,7 +139,7 @@ public class BombermanGame extends Application {
         Group group2 = new Group();
         gameOver = new Scene(group2,900, 700, Color.BLACK);
         final Text text2 = new Text(275, 350, "GAME OVER!");
-        text2.setFill(Color.CHOCOLATE);
+        text2.setFill(Color.TAN);
         text2.setFont(Font.font("Verdana", 50));
 
         Button button1 = new Button("PLAY AGAIN");
@@ -143,54 +149,66 @@ public class BombermanGame extends Application {
         button1.setScaleY(2);
         group2.getChildren().addAll(button1, text2);
         button1.setOnAction(event -> {
-            sound_background.stopSound();
+            text1.setText("LEVEL " + LevelLoader.level);
+            game_over.stopSound();
             stage_start.playSound();
             stage.setScene(levelScene);
+            update(inGameScene);
             AnimationTimer timer1 = new AnimationTimer() {
                 @Override
                 public void handle(long l) {
                     timer_change -= 0.005;
                     if (timer_change <= 0) {
                         stop();
+                        stage.setX(50);
+                        timer_change = 1;
                         stage_start.stopSound();
                         stage_theme.playSound();
                         stage.setScene(inGameScene);
                         stage.show();
-                        LevelLoader.loadLevel(level, entities, stillObjects, bombs);
+                        LevelLoader.loadLevel(entities, stillObjects, bombs);
                     }
                 }
             };
             timer1.start();
         });
 
-
-
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                long oldFrameTime = frameTimes[frameTimeIndex];
-                frameTimes[frameTimeIndex] = l;
-                frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length;
-                if (frameTimeIndex == 0) {
-                    arrayFilled = true;
-                }
-                if (arrayFilled) {
-                    long elapsedNanos = l - oldFrameTime;
-                    long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
-                    double frameRate = 1_000_000_000.0 / elapsedNanosPerFrame;
-                    stage.setTitle(String.format("Bomberman is running | FPS: %.3f", frameRate));
-                    label.setText("LEVEL " + level);
-                }
-                update(inGameScene);
-                render();
+                if (stage.getScene() == inGameScene) {
+                    long oldFrameTime = frameTimes[frameTimeIndex];
+                    frameTimes[frameTimeIndex] = l;
+                    frameTimeIndex = (frameTimeIndex + 1) % frameTimes.length;
+                    if (frameTimeIndex == 0) {
+                        arrayFilled = true;
+                    }
+                    if (arrayFilled) {
+                        long elapsedNanos = l - oldFrameTime;
+                        long elapsedNanosPerFrame = elapsedNanos / frameTimes.length;
+                        double frameRate = 1_000_000_000.0 / elapsedNanosPerFrame;
+                        stage.setTitle(String.format("Bomberman nhà làm       FPS: %.0f", frameRate));
+                        label.setText("LEVEL " + LevelLoader.level);
+                    }
+                    update(inGameScene);
+                    render();
 
+                    if (Bomber.isAllEnemyDead(entities)) {
+                        stage_theme.stopSound();
+                        all_enemy_dead.playSound();
+                        find_the_exit.playSound();
+                    } else {
+                        find_the_exit.stopSound();
+                        stage_theme.playSound();
+                    }
 
-
-
-                if (!Bomber.isAlive) {
-                    stage.setScene(gameOver);
-                    Bomber.isAlive = true;
+                    if (!Bomber.isAlive) {
+                        stage.setX(250);
+                        stage.setScene(gameOver);
+                        Bomber.isAlive = true;
+                        stage_theme.stopSound();
+                        game_over.playSound();
+                    }
                 }
             }
         };

@@ -4,7 +4,7 @@ import entities.AnimatedEntity;
 import entities.Entity;
 import entities.animatedEntity.Bomber;
 import entities.animatedEntity.bomb.Flame;
-import entities.tile.item.WallPassItem;
+import entities.animatedEntity.enemy.Minvo;
 import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -35,6 +35,6 @@ public class Brick extends AnimatedEntity {
         }
         if (wallPassItem && e instanceof Bomber)
             return true;
-        return false;
+        return e instanceof Minvo;
     }
 }

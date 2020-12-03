@@ -1,6 +1,5 @@
 package entities;
 
-import entities.tile.Brick;
 import graphics.Sprite;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;

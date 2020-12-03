@@ -17,7 +17,7 @@ public class Minvo extends Enemy {
     public Minvo(int x, int y, Image img, List<Entity> e, List<Bomb> b) {
         super( x, y, img);
         stillObjects = e;
-        speed = 4;
+        speed = 3;
         enemyAI = new BalloomAI();
         bombs = b;
     }
@@ -157,7 +157,7 @@ public class Minvo extends Enemy {
     }
 
     protected void goDie() {
-        System.out.println(dead_animation_tick);
+        super.goDie();
         if (dead_animation_tick < 0) {
             img = Sprite.minvo_dead.getFxImage();
             ++dead_animation_tick;

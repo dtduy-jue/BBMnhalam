@@ -157,7 +157,7 @@ public class Doll extends Enemy {
     }
 
     protected void goDie() {
-        System.out.println(dead_animation_tick);
+        super.goDie();
         if (dead_animation_tick < 0) {
             img = Sprite.doll_dead.getFxImage();
             ++dead_animation_tick;

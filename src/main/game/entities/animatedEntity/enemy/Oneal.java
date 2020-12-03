@@ -158,6 +158,7 @@ public class Oneal extends Enemy {
     }
 
     protected void goDie() {
+        super.goDie();
         if (dead_animation_tick < 0) {
             img = Sprite.oneal_dead.getFxImage();
             ++dead_animation_tick;

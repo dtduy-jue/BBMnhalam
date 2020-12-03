@@ -20,23 +20,18 @@ import java.util.List;
 public class LevelLoader {
     private static int height = 20, width = 20;
 
-    public static int level;
+    public static int level = 1;
 
     private static char[][] map;
 
-    public static void loadLevel(int lv, List<Entity> entities, List<Entity> stillObject, List<Bomb> bombs) {
-        level = lv;
+    public static void loadLevel(List<Entity> entities, List<Entity> stillObject, List<Bomb> bombs) {
         clearCurrentLevel(entities, bombs, stillObject);
         loadLevelFromFile(level);
         createEntities(entities, bombs, stillObject);
     }
 
-    public static void loadLevelWthoutClearing(int level, List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
-        loadLevelFromFile(level);
-        createEntities(entities, bombs, stillObject);
-    }
-
-    private static void clearCurrentLevel(List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
+    public static void clearCurrentLevel(List<Entity> entities, List<Bomb> bombs, List<Entity> stillObject) {
+        bombs.clear();
         entities.clear();
         stillObject.clear();
     }

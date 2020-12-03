@@ -3,12 +3,9 @@ package entities.tile;
 import entities.Entity;
 import entities.animatedEntity.Bomber;
 import entities.animatedEntity.bomb.Bomb;
-import entities.animatedEntity.enemy.Enemy;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import level.LevelLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Portal extends Tile {
@@ -27,22 +24,14 @@ public class Portal extends Tile {
     @Override
     public boolean collide(Entity e) {
         if (e instanceof Bomber) {
-            if (isAllEnemyDead()) {
+            if (Bomber.isAllEnemyDead(entities)) {
                 ((Bomber) e).resetProperties();
-                LevelLoader.loadLevel(++LevelLoader.level, entities, stillObjects, bombs);
+                ++LevelLoader.level;
+                LevelLoader.loadLevel(entities, stillObjects, bombs);
             }
         }
         return true;
     }
 
-    private boolean isAllEnemyDead() {
-        Entity e;
-        for (int i = 0; i < entities.size(); ++i) {
-            e = entities.get(i);
-            if (e instanceof Enemy) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 }
